@@ -17,16 +17,16 @@ export function ThemeSwitcher() {
   return (
     <div>
       {theme === 'dark' && (
-        <div className='text-zinc-200 hover:bg-zinc-600 p-1 rounded-lg'>
+        <div className='text-zinc-200 hover:bg-zinc-800 p-1 rounded-lg'>
           <button onClick={() => setTheme('light')}>
-            <LightModeIcon />
+            <LightModeIcon className='mb-[1px]' />
           </button>
         </div>
       )}
       {theme === 'light' && (
-        <div className='text-zinc-600 hover:bg-zinc-100 p-1 rounded-lg'>
+        <div className='text-zinc-600 hover:bg-zinc-200 p-1 rounded-lg'>
           <button onClick={() => setTheme('dark')}>
-            <DarkModeIcon />
+            <DarkModeIcon className='mb-[1px]' />
           </button>
         </div>
       )}
