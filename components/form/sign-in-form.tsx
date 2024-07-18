@@ -10,6 +10,8 @@ import FormSubmitButton from './form-submit-button';
 import Logo from '../svgs/logo';
 import SubmitErrorMessage from './submit-error-message';
 import {createClient} from '@/utils/supabase/client';
+import {useRouter} from 'next/navigation';
+
 interface SignInFields {
   email: string;
   password: string;
@@ -20,6 +22,7 @@ interface Action {
 }
 
 export default function SignInForm() {
+  const router = useRouter();
   const initialFormState: SignInFields = {email: '', password: ''};
   const reducer = (state: SignInFields, action: Action) => {
     switch (action.type) {
@@ -44,6 +47,7 @@ export default function SignInForm() {
       });
       if (error) throw Error(error.message);
       setErrorMessage(null);
+      router.push('/');
     } catch (error: any) {
       setErrorMessage(error.message);
     }

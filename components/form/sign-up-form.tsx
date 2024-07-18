@@ -12,6 +12,8 @@ import Logo from '../svgs/logo';
 import {createClient} from '@/utils/supabase/client';
 import WarningIcon from '@mui/icons-material/Warning';
 import SubmitErrorMessage from './submit-error-message';
+import {useRouter} from 'next/navigation';
+
 interface SignUpFields {
   email: string;
   name: string;
@@ -23,6 +25,7 @@ interface Action {
   payload: string;
 }
 export default function SignUpForm() {
+  const router = useRouter();
   const initialFormState: SignUpFields = {email: '', name: '', password: '', repeatPassword: ''};
   const reducer = (state: SignUpFields, action: Action) => {
     switch (action.type) {
@@ -38,6 +41,7 @@ export default function SignUpForm() {
         return state;
     }
   };
+
   const [state, dispatch] = useReducer(reducer, initialFormState);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -49,9 +53,16 @@ export default function SignUpForm() {
       const {data, error} = await supabase.auth.signUp({
         email: state.email,
         password: state.password,
+        options: {
+          data: {
+            displayName: state.name,
+          },
+        },
       });
       if (error) throw Error(error.message);
+
       setErrorMessage(null);
+      router.push('/');
     } catch (error: any) {
       setErrorMessage(error.message);
     }
