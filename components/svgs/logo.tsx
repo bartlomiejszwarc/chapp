@@ -15,7 +15,7 @@ export default function Logo() {
       preserveAspectRatio='xMidYMid'>
       <defs>
         <filter id='editing-hole' x='-100%' y='-100%' width='300%' height='300%'>
-          <feFlood flood-color='#000000' result='black'></feFlood>
+          <feFlood floodColor='#000000' result='black'></feFlood>
           <feMorphology operator='dilate' radius='2' in='SourceGraphic' result='erode'></feMorphology>
           <feGaussianBlur in='erode' stdDeviation='4' result='blur'></feGaussianBlur>
           <feOffset in='blur' dx='2' dy='2' result='offset'></feOffset>

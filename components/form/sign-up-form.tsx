@@ -9,7 +9,9 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockIcon from '@mui/icons-material/Lock';
 import BadgeIcon from '@mui/icons-material/Badge';
 import Logo from '../svgs/logo';
-
+import {createClient} from '@/utils/supabase/client';
+import WarningIcon from '@mui/icons-material/Warning';
+import SubmitErrorMessage from './submit-error-message';
 interface SignUpFields {
   email: string;
   name: string;
@@ -38,8 +40,21 @@ export default function SignUpForm() {
   };
   const [state, dispatch] = useReducer(reducer, initialFormState);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const handleSignUp = () => {
-    console.log(state);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const handleSignUp = async () => {
+    try {
+      const supabase = createClient();
+      if (!state.email || !state.name || !state.password || !state.repeatPassword)
+        throw Error('All fields are required');
+      const {data, error} = await supabase.auth.signUp({
+        email: state.email,
+        password: state.password,
+      });
+      if (error) throw Error(error.message);
+      setErrorMessage(null);
+    } catch (error: any) {
+      setErrorMessage(error.message);
+    }
   };
   return (
     <div className='w-full'>
@@ -49,7 +64,7 @@ export default function SignUpForm() {
       <div className='bg-transparent rounded-lg flex flex-col px-3'>
         <span className='text-zinc-800 dark:text-zinc-100 font-semibold text-3xl'>Join our community!</span>
         <span className='text-zinc-500 text-lg'>Create an account to get started.</span>
-        <div className='flex flex-col space-y-6 py-8'>
+        <div className='flex flex-col space-y-6 pt-8 pb-1'>
           <InputWithIconTemplate icon={<MailOutlineIcon className='text-zinc-50 dark:text-zinc-400' />}>
             <input
               className='w-full h-full outline-none bg-transparent text-zinc-800 dark:text-zinc-300 dark:placeholder:text-zinc-500'
@@ -105,7 +120,11 @@ export default function SignUpForm() {
             </button>
           </InputWithIconTemplate>
         </div>
+        <div className='w-full my-3'>
+          {errorMessage!?.length > 0 && <SubmitErrorMessage text={errorMessage as string} />}
+        </div>
       </div>
+
       <div className='flex justify-center space-y-2 px-3 pb-4'>
         <FormSubmitButton text={'Sign up!'} onClick={handleSignUp} />
       </div>

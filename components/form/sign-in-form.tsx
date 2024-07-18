@@ -8,6 +8,8 @@ import Link from 'next/link';
 import InputWithIconTemplate from './input-with-icon-template';
 import FormSubmitButton from './form-submit-button';
 import Logo from '../svgs/logo';
+import SubmitErrorMessage from './submit-error-message';
+import {createClient} from '@/utils/supabase/client';
 interface SignInFields {
   email: string;
   password: string;
@@ -31,8 +33,20 @@ export default function SignInForm() {
   };
   const [state, dispatch] = useReducer(reducer, initialFormState);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const handleSignIn = () => {
-    console.log(state);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const handleSignIn = async () => {
+    try {
+      const supabase = createClient();
+      if (!state.email || !state.password) throw Error('All fields are required');
+      const {data, error} = await supabase.auth.signInWithPassword({
+        email: state.email,
+        password: state.password,
+      });
+      if (error) throw Error(error.message);
+      setErrorMessage(null);
+    } catch (error: any) {
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -43,7 +57,7 @@ export default function SignInForm() {
       <div className='bg-transparent rounded-lg flex flex-col px-3'>
         <span className='text-zinc-800 dark:text-zinc-100 font-semibold text-3xl'>Welcome back!</span>
         <span className='text-zinc-500 text-lg'>Please sign in to your account.</span>
-        <div className='flex flex-col space-y-6 py-8'>
+        <div className='flex flex-col space-y-6 pt-8 pb-1'>
           <InputWithIconTemplate icon={<MailOutlineIcon className='text-zinc-50 dark:text-zinc-400' />}>
             <input
               className='w-full h-full outline-none bg-transparent text-zinc-800 dark:text-zinc-300 dark:placeholder:text-zinc-500'
@@ -71,6 +85,9 @@ export default function SignInForm() {
               )}
             </button>
           </InputWithIconTemplate>
+        </div>
+        <div className='w-full my-3'>
+          {errorMessage!?.length > 0 && <SubmitErrorMessage text={errorMessage as string} />}
         </div>
       </div>
       <div className='flex justify-center space-y-2 px-3 pb-4'>
