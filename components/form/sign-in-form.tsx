@@ -7,6 +7,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Link from 'next/link';
 import InputWithIconTemplate from './input-with-icon-template';
 import FormSubmitButton from './form-submit-button';
+import Logo from '../svgs/logo';
 interface SignInFields {
   email: string;
   password: string;
@@ -36,6 +37,9 @@ export default function SignInForm() {
 
   return (
     <div className='w-full'>
+      <div className='flex w-full lg:hidden items-center justify-center pb-6'>
+        <Logo />
+      </div>
       <div className='bg-transparent rounded-lg flex flex-col px-3'>
         <span className='text-zinc-800 dark:text-zinc-100 font-semibold text-3xl'>Welcome back!</span>
         <span className='text-zinc-500 text-lg'>Please sign in to your account.</span>

@@ -8,6 +8,7 @@ import InputWithIconTemplate from './input-with-icon-template';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockIcon from '@mui/icons-material/Lock';
 import BadgeIcon from '@mui/icons-material/Badge';
+import Logo from '../svgs/logo';
 
 interface SignUpFields {
   email: string;
@@ -42,6 +43,9 @@ export default function SignUpForm() {
   };
   return (
     <div className='w-full'>
+      <div className='flex w-full lg:hidden items-center justify-center pb-6'>
+        <Logo />
+      </div>
       <div className='bg-transparent rounded-lg flex flex-col px-3'>
         <span className='text-zinc-800 dark:text-zinc-100 font-semibold text-3xl'>Join our community!</span>
         <span className='text-zinc-500 text-lg'>Create an account to get started.</span>
@@ -103,7 +107,7 @@ export default function SignUpForm() {
         </div>
       </div>
       <div className='flex justify-center space-y-2 px-3 pb-4'>
-        <FormSubmitButton text={'Sign in'} onClick={handleSignUp} />
+        <FormSubmitButton text={'Sign up!'} onClick={handleSignUp} />
       </div>
       <div className='px-3'>
         <span className='dark:font-thin text-zinc-700 dark:text-zinc-300'>
