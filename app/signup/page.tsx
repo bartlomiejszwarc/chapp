@@ -8,7 +8,7 @@ export default function Page() {
       <div className='w-0 lg:w-1/2 xl:w-2/3 bg-sky-100 dark:bg-zinc-800 flex flex-col items-center justify-center text-zinc-700 dark:text-zinc-300'>
         <Logo />
         <div className='flex flex-col text-center'>
-          <span className='text-base font-medium dark:font-thin'>
+          <span className='text-base font-medium dark:font-normal'>
             Join us now and connect with people all over the world
           </span>
         </div>

@@ -8,7 +8,7 @@ const font = Manrope({subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: 'ChatApp',
-  description: 'Stat connected',
+  description: 'Stay connected',
 };
 
 export default function RootLayout({

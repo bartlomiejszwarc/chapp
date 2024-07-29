@@ -30,6 +30,13 @@ export function ThemeSwitcher() {
           </button>
         </div>
       )}
+      {theme === 'system' && (
+        <div className='text-zinc-600 hover:bg-zinc-200 p-1 rounded-lg'>
+          <button onClick={() => setTheme('dark')}>
+            <DarkModeIcon className='mb-[1px]' />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
