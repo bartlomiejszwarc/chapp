@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <div className='w-full'>
       <ChatPageLayout>
-        <div className='w-full flex space-x-2 '>
+        <div className='w-full flex space-x-8'>
           <div className='w-full flex sm:w-96 md:w-[30rem] '>
             <ChatsList />
           </div>
