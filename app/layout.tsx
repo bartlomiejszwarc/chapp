@@ -3,6 +3,7 @@ import {Manrope} from 'next/font/google';
 import './globals.css';
 import {ThemeProvider} from '@/components/theme-provider';
 import {ThemeSwitcher} from '@/components/theme-switcher';
+import Navbar from '@/components/navbar/navbar';
 
 const font = Manrope({subsets: ['latin']});
 
@@ -19,12 +20,15 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
-        <ThemeProvider attribute='class' disableTransitionOnChange>
-          <div className='bg-transparent absolute right-4 top-4'>
-            <ThemeSwitcher />
-          </div>
-          {children}
-        </ThemeProvider>
+        <div className='w-full min-h-screen'>
+          <ThemeProvider attribute='class' disableTransitionOnChange>
+            <Navbar />
+            <div className='bg-transparent absolute right-4 top-4 z-[100]'>
+              <ThemeSwitcher />
+            </div>
+            {children}
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );
