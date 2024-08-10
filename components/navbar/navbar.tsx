@@ -31,7 +31,7 @@ export default function App() {
 
   if (pathname !== '/login' && pathname !== '/signup')
     return (
-      <Navbar onMenuOpenChange={setIsMenuOpen} className=''>
+      <Navbar onMenuOpenChange={setIsMenuOpen} position='static'>
         <NavbarContent>
           <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className='sm:hidden' />
           {/* <NavbarBrand></NavbarBrand> */}

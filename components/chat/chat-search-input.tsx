@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function ChatSearchInput() {
   return (
     <Input
-      placeholder={'Search in Chapp'}
+      placeholder={'Search in conversations'}
       startContent={<SearchIcon className='text-neutral-700 dark:text-neutral-500' />}
     />
   );

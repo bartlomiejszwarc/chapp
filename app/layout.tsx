@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
-        <div className='w-full min-h-screen'>
+        <div className='w-full min-h-screen px-4'>
           <ThemeProvider attribute='class' disableTransitionOnChange>
             <Navbar />
             <div className='bg-transparent absolute right-4 top-4 z-[100]'>
