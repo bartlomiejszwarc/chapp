@@ -13,7 +13,7 @@ export default function Messages() {
   return (
     <div className='flex flex-col space-y-6 overflow-auto my-6'>
       {Array.from({length: 10}, (_, idx) => (
-        <div ref={idx === 10 - 1 ? lastMessageRef : null}>
+        <div ref={idx === 10 - 1 ? lastMessageRef : null} key={idx}>
           <Message />
         </div>
       ))}

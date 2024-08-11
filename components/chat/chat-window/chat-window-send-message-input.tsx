@@ -13,7 +13,7 @@ export default function ChatWindowSendMessageInput() {
 
   const handleSendMessage = () => {
     if (message.length === 0) return;
-    console.log(message);
+    console.log(message, message.length);
   };
   return (
     <div className='relative flex items-end'>
@@ -26,7 +26,7 @@ export default function ChatWindowSendMessageInput() {
             : 'text-stone-800 dark:text-zinc-400 hover:text-stone-700 hover:dark:text-zinc-300'
         } `}
         onClick={handleSendMessage}>
-        <SendIcon className='text-3xl relative ml-4 mb-1 z-30 ' />
+        <SendIcon className='text-3xl relative ml-4 mb-[0.35rem] z-30 ' />
       </button>
     </div>
   );

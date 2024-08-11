@@ -3,5 +3,5 @@ export default function ChatPageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className='w-full rounded-lg '>{children}</div>;
+  return <div className='w-full rounded-lg'>{children}</div>;
 }
