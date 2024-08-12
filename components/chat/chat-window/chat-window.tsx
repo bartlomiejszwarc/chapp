@@ -14,7 +14,7 @@ export default function ChatWindow({id}: Props) {
 
   getConversation();
   return (
-    <div className='relative flex w-full h-[calc(100vh-5rem)] overflow-hidden'>
+    <div className='relative flex max-w-full h-[calc(100vh-5rem)] overflow-hidden'>
       <Link href='/'>
         <ChevronLeftIcon className='sm:hidden absolute left-0 top-0 z-30 text-[2.5rem] cursor-pointer mb-[50px] ' />
       </Link>

@@ -14,7 +14,7 @@ export default function Messages() {
     <div className='flex flex-col space-y-6 overflow-auto my-6'>
       {Array.from({length: 10}, (_, idx) => (
         <div ref={idx === 10 - 1 ? lastMessageRef : null} key={idx}>
-          <Message />
+          <Message messageUid={Math.floor(Math.random() * 2).toString()} />
         </div>
       ))}
     </div>

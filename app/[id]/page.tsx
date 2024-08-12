@@ -9,10 +9,12 @@ export default function Page({params}: {params: {id: string}}) {
     <div className='w-full overflow-y-hidden'>
       <ChatPageLayout>
         <div className='w-full flex sm:space-x-8 overflow-y-hidden'>
-          <div className='hidden w-full sm:flex sm:w-96 md:w-[30rem] h-[calc(100vh-4rem)] overflow-y-hidden'>
+          <div className='hidden w-full sm:flex sm:w-64 md:w-96 h-[calc(100vh-4rem)] overflow-y-hidden'>
             <ChatsList />
           </div>
-          <ChatWindow id={id} />
+          <div className='w-full sm:max-w-[90%]'>
+            <ChatWindow id={id} />
+          </div>
         </div>
       </ChatPageLayout>
     </div>
