@@ -28,7 +28,7 @@ export default function Message({userAvatarUrl, message, messageUid}: Props) {
               messagedawadawdagedawadagedawadagedawadagedawadagedawadagedawadagedawad
             </span>
           </div>
-          <span className='pl-2 text-xs text-zinc-600 dark:text-zinc-400'>{convertDate(sampleDate, 'full')}</span>
+          <span className='pl-2 text-xs text-zinc-600 dark:text-zinc-400'>{convertDate(sampleDate, 'chat')}</span>
         </div>
       </div>
     </div>
