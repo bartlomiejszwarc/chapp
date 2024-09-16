@@ -2,8 +2,8 @@ import {createStore} from 'zustand/vanilla';
 
 export interface People {
   id: string;
-  avatar_url: string;
-  display_name: string;
+  avatarUrl: string;
+  displayName: string;
   email: string;
 }
 export type PeopleState = {

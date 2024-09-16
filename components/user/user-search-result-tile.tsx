@@ -6,10 +6,11 @@ import {useLayoutEffect} from 'react';
 import useInviteUser from '@/hooks/invitations/use-invite-user';
 interface Props {
   id: string;
+  avatarUrl: string;
   displayName: string;
   email: string;
 }
-export default function UserSearchResultTile() {
+export default function UserSearchResultTile({id, displayName, email, avatarUrl}: Props) {
   const {inviteUser} = useInviteUser();
 
   const checkIsPending = () => {
@@ -25,11 +26,11 @@ export default function UserSearchResultTile() {
   return (
     <div className='relative w-full flex h-16 space-x-2 dark:text-neutral-200'>
       <div className='w-12 h-12'>
-        <Avatar className='w-12 h-12' />
+        <Avatar className='w-12 h-12' src={avatarUrl} />
       </div>
       <div className='flex flex-col'>
-        <span>User's name</span>
-        <span className='text-sm dark:text-neutral-400'>User's e-mail</span>
+        <span>{displayName}</span>
+        <span className='text-sm dark:text-neutral-400'>{email}</span>
       </div>
       {!checkIsPending() ? (
         <button

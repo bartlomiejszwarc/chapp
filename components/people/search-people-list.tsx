@@ -7,8 +7,8 @@ export default function SearchPeopleList() {
   const {people} = usePeopleStore((state) => state);
   return (
     <div className='px-2 py-2 flex flex-col space-y-2 w-full sm:w-[35rem] '>
-      {people.map((user, idx) => (
-        <UserSearchResultTile key={idx} />
+      {people!?.map((user, idx) => (
+        <UserSearchResultTile key={idx} {...user} />
       ))}
     </div>
   );

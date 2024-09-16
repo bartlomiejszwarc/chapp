@@ -6,13 +6,13 @@ import {useFindUsers} from '@/hooks/use-find-users';
 import {usePeopleStore} from '@/providers/people-store-provider';
 
 export default function SearchPeopleInput() {
-  const {people, setPeopleList} = usePeopleStore((state) => state);
+  const {setPeopleList} = usePeopleStore((state) => state);
   const {findUsers} = useFindUsers();
   const [inputValue, setInputValue] = useState<string>('');
   const searchUsers = async (e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent) => {
     if (e.key === 'Enter') {
       const people = await findUsers(inputValue);
-      setPeopleList(people);
+      if (people) setPeopleList(people);
     }
   };
   return (

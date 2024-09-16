@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
-        <div className='w-full min-h-[calc(100vh-5rem)] px-4 overflow-y-hidden'>
+        <div className='w-full min-h-screen px-4 overflow-y-hidden'>
           <PeopleStoreProvider>
             <ThemeProvider attribute='class' disableTransitionOnChange>
               <Navbar />
