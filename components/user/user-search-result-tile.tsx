@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import {useLayoutEffect} from 'react';
 import useInviteUser from '@/hooks/invitations/use-invite-user';
 interface Props {
-  uid: string;
+  id: string;
   displayName: string;
   email: string;
 }

@@ -4,6 +4,7 @@ import './globals.css';
 import {ThemeProvider} from '@/components/theme-provider';
 import {ThemeSwitcher} from '@/components/theme-switcher';
 import Navbar from '@/components/navbar/navbar';
+import {PeopleStoreProvider} from '@/providers/people-store-provider';
 
 const font = Manrope({subsets: ['latin']});
 
@@ -21,13 +22,15 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
         <div className='w-full min-h-[calc(100vh-5rem)] px-4 overflow-y-hidden'>
-          <ThemeProvider attribute='class' disableTransitionOnChange>
-            <Navbar />
-            <div className='bg-transparent absolute right-4 top-4 z-[100]'>
-              <ThemeSwitcher />
-            </div>
-            {children}
-          </ThemeProvider>
+          <PeopleStoreProvider>
+            <ThemeProvider attribute='class' disableTransitionOnChange>
+              <Navbar />
+              <div className='bg-transparent absolute right-4 top-4 z-[100]'>
+                <ThemeSwitcher />
+              </div>
+              {children}
+            </ThemeProvider>
+          </PeopleStoreProvider>
         </div>
       </body>
     </html>

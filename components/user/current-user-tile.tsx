@@ -1,4 +1,4 @@
-import {useFindUsers} from '@/hooks/useFindUsers';
+import {useFindUsers} from '@/hooks/use-find-users';
 import {createClient} from '@/utils/supabase/server';
 import {Avatar} from '@nextui-org/react';
 

@@ -63,7 +63,7 @@ export default function SignUpForm() {
       const {error: errorFromSubabase} = await supabase
         .from('users')
         .insert({id: data!.user!.id, display_name: data.user?.user_metadata.display_name, email: state.email});
-      console.log(errorFromSubabase);
+
       setErrorMessage(null);
       router.push('/');
     } catch (error: any) {
