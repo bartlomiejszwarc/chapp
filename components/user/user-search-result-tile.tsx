@@ -2,8 +2,10 @@
 import {Avatar} from '@nextui-org/avatar';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import {useLayoutEffect} from 'react';
+import {useEffect, useState} from 'react';
 import useInviteUser from '@/hooks/invitations/use-invite-user';
+import {createClient} from '@/utils/supabase/client';
+import {User} from '@supabase/supabase-js';
 interface Props {
   id: string;
   avatarUrl: string;
@@ -12,12 +14,22 @@ interface Props {
 }
 export default function UserSearchResultTile({id, displayName, email, avatarUrl}: Props) {
   const {inviteUser} = useInviteUser();
+  const supabase = createClient();
+  const [currentUser, setCurrentUser] = useState<User | null>();
 
   const checkIsPending = () => {
     return false;
   };
 
-  useLayoutEffect(() => {}, []);
+  useEffect(() => {
+    const getUserData = async () => {
+      const {
+        data: {user},
+      } = await supabase.auth.getUser();
+      setCurrentUser(user);
+    };
+    getUserData();
+  }, []);
 
   const checkIfFriend = () => {
     return false;
@@ -35,7 +47,7 @@ export default function UserSearchResultTile({id, displayName, email, avatarUrl}
       {!checkIsPending() ? (
         <button
           className='absolute right-0 top-0 h-6 w-6 flex items-center justify-center bg-green-600 hover:bg-green-500 ease-in-out duration-150 rounded-full'
-          onClick={() => inviteUser('1', '2')}>
+          onClick={() => inviteUser(currentUser!?.id, id)}>
           <AddIcon sx={{fontSize: '20px'}} />
         </button>
       ) : (

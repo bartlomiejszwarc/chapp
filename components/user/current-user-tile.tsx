@@ -8,9 +8,6 @@ export default async function CurrentUserTile() {
     data: {user},
   } = await supabase.auth.getUser();
 
-  const {findUsers} = useFindUsers();
-
-  const users = await findUsers('xyz');
   const displayName = user!.user_metadata.display_name;
   return (
     <div className='flex items-center space-x-2 bg-transparent'>
