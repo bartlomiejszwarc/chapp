@@ -7,6 +7,7 @@ export interface AuthenticatedUser {
   email: string;
   sentInvitations: string[];
   incomingInvitations: string[];
+  friends: string[];
 }
 
 export type AuthenticatedUserState = {
@@ -16,6 +17,7 @@ export type AuthenticatedUserState = {
 export type AuthenticatedUserActions = {
   setAuthenticatedUserData: (authenticatedUser: AuthenticatedUser) => void;
   setAuthenticatedUserSentInvitations: (sentInvitations: string[]) => void;
+  setAuthenticatedUserFriends: (friends: string[]) => void;
 };
 
 export type AuthenticatedUserStore = AuthenticatedUserState & AuthenticatedUserActions;
@@ -35,6 +37,14 @@ export const createAuthenticatedUserStore = (initState: AuthenticatedUserState =
         authenticatedUser: {
           ...state.authenticatedUser,
           sentInvitations,
+        } as AuthenticatedUser,
+      }));
+    },
+    setAuthenticatedUserFriends: (friends: string[]) => {
+      set((state) => ({
+        authenticatedUser: {
+          ...state.authenticatedUser,
+          friends,
         } as AuthenticatedUser,
       }));
     },

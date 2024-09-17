@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function IncomingInvitation({invitationId}: Props) {
-  const {authenticatedUser} = useAuthenticatedUserStore((state) => state);
+  const {authenticatedUser, setAuthenticatedUserFriends} = useAuthenticatedUserStore((state) => state);
   const {getInviterUserData} = useGetUserData();
   const {acceptInvitation, declineInvitation} = useManageInvitation();
   const [inviterData, setInviterData] = useState<InviterUserData>();
@@ -28,10 +28,15 @@ export default function IncomingInvitation({invitationId}: Props) {
   }, []);
 
   const accept = async () => {
-    if (authenticatedUser) await acceptInvitation(invitationId, authenticatedUser!.id);
+    if (authenticatedUser) {
+      await acceptInvitation(invitationId, authenticatedUser!.id);
+      setAuthenticatedUserFriends([...authenticatedUser.friends, invitationId]);
+    }
   };
   const decline = async () => {
-    if (authenticatedUser) await declineInvitation(invitationId, authenticatedUser!.id);
+    if (authenticatedUser) {
+      await declineInvitation(invitationId, authenticatedUser!.id);
+    }
   };
 
   return (

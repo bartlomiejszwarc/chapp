@@ -17,6 +17,14 @@ export default function useManageInvitation() {
       return data;
     } catch (error: any) {}
   };
+  const cancelInvitation = async (inviterId: string, inviteeId: string) => {
+    const supabase = createClient();
+    try {
+      const {data, error} = await supabase.rpc('cancel_invitation', {inviter_id: inviterId, invitee_id: inviteeId});
+      if (error) throw new Error(error.message);
+      return data;
+    } catch (error: any) {}
+  };
 
-  return {acceptInvitation, declineInvitation};
+  return {acceptInvitation, declineInvitation, cancelInvitation};
 }

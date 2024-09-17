@@ -14,7 +14,7 @@ export const useGetUserData = () => {
     try {
       const {data, error} = await supabase
         .from('users')
-        .select('id, display_name, email, avatar_url, sent_invitations, incoming_invitations')
+        .select('id, display_name, email, avatar_url, sent_invitations, incoming_invitations, friends')
         .eq('id', id)
         .single();
       if (error) throw new Error(error.message);
@@ -26,6 +26,7 @@ export const useGetUserData = () => {
         avatarUrl: data.avatar_url,
         sentInvitations: data.sent_invitations,
         incomingInvitations: data.incoming_invitations,
+        friends: data.friends,
       };
 
       return formattedData;
